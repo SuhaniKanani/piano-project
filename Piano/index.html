@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Mouse Interaction</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('background.jpeg');
+            background-size: cover;
+        }
+
+        .main {
+            height: 320px;
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            background-color: black;
+            border-top: 60px solid black;
+            border-left: 5px solid black;
+            border-right: 5px solid black;
+            border-bottom: 5px solid black;
+
+        }
+
+        .key {
+            width: 70px;
+            height: 300px;
+            margin: 5px;
+            background-color: #fff;
+            border: 2px solid #000;
+            cursor: pointer;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .key:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.01, 1.01);
+        }
+
+        @media only screen and  (min-width:1440px) and (max-width: 1920px) {
+            .main {
+                border-left: transparent;
+                width:30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="key" sound="clip 1.mpeg"></div>
+        <div class="key" sound="clip 11.mpeg"></div>
+        <div class="key" sound="clip 12.mpeg"></div>
+        <div class="key" sound="clip 5.mpeg"></div>
+        <div class="key" sound="clip 3.mpeg"></div>
+        <div class="key" sound="clip 6.mpeg"></div>
+        <div class="key" sound="clip 7.mpeg"></div>
+    </div>
+
+    <script>
+        let key = document.querySelectorAll('.key');
+
+        key.forEach((value) => {
+            let audioFile = value.getAttribute('sound');
+            let audio = new Audio(audioFile);
+
+            value.addEventListener('mouseenter', () => {
+                audio.play();
+            });
+
+            value.addEventListener('mouseleave', () => {
+                audio.pause();
+            });
+        });
+
+    </script>
+</body>
+
+</html>
